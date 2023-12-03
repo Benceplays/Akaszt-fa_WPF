@@ -29,6 +29,18 @@ namespace Akasztofa_Tibor
         private int maxszam = MainWindow.maxszam;
         private int probalkozas = 1;
         static string IgenNem(bool val) { return val ? "igen" : "nem"; }
+        public void Ellenorzo(char betu)
+        {
+            for (int i = 0; i < randomszo.Length; i++)
+            {
+                if (betu == randomszo[i])
+                {
+                    titkositottszo[i] = betu;
+                    megfejtendopelda.Text = "";
+                    titkositottszo.ForEach(n => megfejtendopelda.Text += n);
+                }
+            }
+        }
         public Game()
         {
             InitializeComponent();
@@ -95,12 +107,6 @@ namespace Akasztofa_Tibor
                 korszam++;
             }
         }
-        public void Ellenorzo(char betu)
-        {
-            for (int i = 0; i < randomszo.Length; i++)
-            {
-                if (betu == randomszo[i]) { titkositottszo[i] = betu; megfejtendopelda.Text = ""; titkositottszo.ForEach(n => megfejtendopelda.Text += n); }
-            }
-        }
+        public void eredmenyekClick(object sender, RoutedEventArgs e) { MainFrame.Content = new Results(); }
     }
 }

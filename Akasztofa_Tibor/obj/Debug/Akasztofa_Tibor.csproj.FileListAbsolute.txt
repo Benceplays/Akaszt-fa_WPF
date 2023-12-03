@@ -32,3 +32,5 @@ C:\Users\Bence\Documents\GitHub\Akasztofa_WPF\Akasztofa_Tibor\obj\Debug\Akasztof
 C:\Users\Bence\Documents\GitHub\Akasztofa_WPF\Akasztofa_Tibor\obj\Debug\Akasztofa_Tibor.csproj.CoreCompileInputs.cache
 C:\Users\Bence\Documents\GitHub\Akasztofa_WPF\Akasztofa_Tibor\obj\Debug\Akasztofa_Tibor.exe
 C:\Users\Bence\Documents\GitHub\Akasztofa_WPF\Akasztofa_Tibor\obj\Debug\Akasztofa_Tibor.pdb
+C:\Users\Bence\Documents\GitHub\Akasztofa_WPF\Akasztofa_Tibor\obj\Debug\Results.g.cs
+C:\Users\Bence\Documents\GitHub\Akasztofa_WPF\Akasztofa_Tibor\obj\Debug\Results.baml
