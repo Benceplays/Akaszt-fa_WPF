@@ -18,7 +18,7 @@
                     <RadioButton x:Name="Type2" Foreground="White" Content="Informatika" Margin="10,45,0,5"/>
                 </Grid>
                 <Label Foreground="White" FontSize="15" Content="Adja meg a megengedett hibák számát: "></Label>
-                <TextBox></TextBox>
+                <TextBox x:Name="lehetosegszam" Text="9"></TextBox>
                 <Button Click="GameClick" Content="Játék indítása" Background="#132226" Foreground="White" Width="80" Margin="0, 25, 0, 10" HorizontalAlignment="Right"/>
             </StackPanel>
             <Frame x:Name="MainFrame" Margin="-83,0,-83,0"/>

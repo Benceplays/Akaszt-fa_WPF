@@ -21,12 +21,37 @@ namespace Akasztofa_Tibor
         private List<string> biologia = new List<string>();
         private List<string> matematika = new List<string>();
         private List<string> informatika = new List<string>();
+        private List<string> tippek = new List<string>();
+        private List<string> jotippek = new List<string>();
+        private List<char> titkositottszo = new List<char>();
         private string randomszo;
+        private int korszam = 1;
+        private int maxszam = MainWindow.maxszam;
+        private int probalkozas = 1;
+        static string IgenNem(bool val) { return val ? "igen" : "nem"; }
         public Game()
         {
             InitializeComponent();
             eddigieredmenyekszoveg.Content = $"{MainWindow.nev} eddigi eredményei: ";
             Random random = new Random();
+            foreach (string sor in File.ReadAllLines(@"jatekosok.txt"))
+            {
+                string[] s = sor.Split(';');
+                string szo = "";
+                if (s[0] == MainWindow.nev)
+                {
+                    szo += $"Biológia témakörben nyert {s[1]}, vesztett {s[2]} játékot. \n" ;
+                    szo += $"Matematika témakörben nyert {s[3]}, vesztett {s[4]} játékot. \n";
+                    szo += $"Informatika témakörben nyert {s[5]}, vesztett {s[6]} játékot.";
+                }
+                else
+                {
+                    szo += $"Biológia témakörben nyert 0, vesztett 0 játékot. \n";
+                    szo += $"Matematika témakörben nyert 0, vesztett 0 játékot. \n";
+                    szo += $"Informatika témakörben nyert 0, vesztett 0 játékot.";
+                }
+                eredmenyek.Text = szo;
+            }
             foreach (string sor in File.ReadAllLines(@"szavak.txt"))
             {
                 string[] s = sor.Split(';');
@@ -48,7 +73,34 @@ namespace Akasztofa_Tibor
                     randomszo = informatika[random.Next(informatika.Count)];
                     break;
             }
-            megfejtendopelda.Text = randomszo;
+            for (int i = 0; i < randomszo.Length; i++)
+            {
+                titkositottszo.Add('*');
+            }
+            titkositottszo.ForEach(n => megfejtendopelda.Text += n);
+            tipButton.Content = $"{probalkozas}/{maxszam}";
+        }
+        public void TippClick(object sender, RoutedEventArgs e)
+        {
+            if (probalkozas <= maxszam)
+            {
+                tipButton.Content = $"Tipp {probalkozas++}/{maxszam}";
+                tippek.Add(bemenet.Text);
+                if (randomszo.Contains(bemenet.Text))
+                { 
+                    jotippek.Add(bemenet.Text); 
+                    Ellenorzo(Convert.ToChar(bemenet.Text));
+                }
+                esemenytabla.Text += $"{korszam}.kör. Tippelt betű: {bemenet.Text} Találat: {IgenNem(randomszo.Contains(bemenet.Text))} \n";
+                korszam++;
+            }
+        }
+        public void Ellenorzo(char betu)
+        {
+            for (int i = 0; i < randomszo.Length; i++)
+            {
+                if (betu == randomszo[i]) { titkositottszo[i] = betu; megfejtendopelda.Text = ""; titkositottszo.ForEach(n => megfejtendopelda.Text += n); }
+            }
         }
     }
 }
