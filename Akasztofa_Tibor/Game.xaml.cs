@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,16 +19,16 @@ namespace Akasztofa_Tibor
 {
     public partial class Game : Page
     {
-        private List<string> biologia = new List<string>();
-        private List<string> matematika = new List<string>();
-        private List<string> informatika = new List<string>();
-        private List<string> tippek = new List<string>();
-        private List<string> jotippek = new List<string>();
+        private List<string> gym = new List<string>();
+        private List<string> porno= new List<string>();
+        private List<string> drug = new List<string>();
+        private string eltalaltbetuk = "";
         private List<char> titkositottszo = new List<char>();
         private string randomszo;
         private int korszam = 1;
-        private int maxszam = MainWindow.maxszam;
+        private int maxszam = 6;
         private int probalkozas = 1;
+        private int hiba = 0;
         static string IgenNem(bool val) { return val ? "igen" : "nem"; }
         public void Ellenorzo(char betu)
         {
@@ -41,6 +42,17 @@ namespace Akasztofa_Tibor
                 }
             }
         }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            if (eltalaltbetuk!= "")
+            {
+                Regex regex = new Regex($"[{eltalaltbetuk}]");
+                var futureText = $"{(sender as TextBox).Text}{e.Text}";
+                e.Handled = regex.IsMatch(futureText);
+            }
+
+        }
         public Game()
         {
             InitializeComponent();
@@ -52,37 +64,37 @@ namespace Akasztofa_Tibor
                 string szo = "";
                 if (s[0] == MainWindow.nev)
                 {
-                    szo += $"Biológia témakörben nyert {s[1]}, vesztett {s[2]} játékot. \n" ;
-                    szo += $"Matematika témakörben nyert {s[3]}, vesztett {s[4]} játékot. \n";
-                    szo += $"Informatika témakörben nyert {s[5]}, vesztett {s[6]} játékot.";
+                    szo += $"Edzőterem témakörben nyert {s[1]}, vesztett {s[2]} játékot. \n" ;
+                    szo += $"Pornógráfia témakörben nyert {s[3]}, vesztett {s[4]} játékot. \n";
+                    szo += $"Tudatmodósítószerek témakörben nyert {s[5]}, vesztett {s[6]} játékot.";
                 }
                 else
                 {
-                    szo += $"Biológia témakörben nyert 0, vesztett 0 játékot. \n";
-                    szo += $"Matematika témakörben nyert 0, vesztett 0 játékot. \n";
-                    szo += $"Informatika témakörben nyert 0, vesztett 0 játékot.";
+                    szo += $"Edzőterem témakörben nyert 0, vesztett 0 játékot. \n";
+                    szo += $"Pornógráfia témakörben nyert 0, vesztett 0 játékot. \n";
+                    szo += $"Tudatmodósítószerek témakörben nyert 0, vesztett 0 játékot.";
                 }
                 eredmenyek.Text = szo;
             }
             foreach (string sor in File.ReadAllLines(@"szavak.txt"))
             {
                 string[] s = sor.Split(';');
-                if (s[1] == "b") biologia.Add(s[0]);
-                if (s[1] == "m") matematika.Add(s[0]);
-                if (s[1] == "i") informatika.Add(s[0]);
+                if (s[1] == "b") gym.Add(s[0]);
+                if (s[1] == "m") porno.Add(s[0]);
+                if (s[1] == "i") drug.Add(s[0]);
             }
             switch (MainWindow.tipusSzam) {
                 case 0:
-                    temakor.Text = "Biológia";
-                    randomszo = biologia[random.Next(biologia.Count)];
+                    temakor.Text = "Edzőterem";
+                    randomszo = gym[random.Next(gym.Count)];
                     break;
                 case 1:
-                    temakor.Text = "Matematika";
-                    randomszo = matematika[random.Next(matematika.Count)];
+                    temakor.Text = "Pornógráfia";
+                    randomszo = porno[random.Next(porno.Count)];
                     break;
                 case 2:
-                    temakor.Text = "Informatika";
-                    randomszo = informatika[random.Next(informatika.Count)];
+                    temakor.Text = "Tudatmodósítószerek";
+                    randomszo = drug[random.Next(drug.Count)];
                     break;
             }
             for (int i = 0; i < randomszo.Length; i++)
@@ -97,11 +109,17 @@ namespace Akasztofa_Tibor
             if (probalkozas <= maxszam)
             {
                 tipButton.Content = $"Tipp {probalkozas++}/{maxszam}";
-                tippek.Add(bemenet.Text);
                 if (randomszo.Contains(bemenet.Text))
                 { 
-                    jotippek.Add(bemenet.Text); 
                     Ellenorzo(Convert.ToChar(bemenet.Text));
+                    eltalaltbetuk+=(Convert.ToChar(bemenet.Text));
+                    bemenet.Text = "";
+
+                }
+                else
+                {
+                    hiba++;
+                    gibbet.Source = new BitmapImage(new Uri($"hangman_{hiba}.png",UriKind.RelativeOrAbsolute));
                 }
                 esemenytabla.Text += $"{korszam}.kör. Tippelt betű: {bemenet.Text} Találat: {IgenNem(randomszo.Contains(bemenet.Text))} \n";
                 korszam++;

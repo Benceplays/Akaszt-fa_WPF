@@ -17,13 +17,14 @@
             <Label Content="A megfejtendő szó mintája: " Foreground="White"></Label>
             <TextBox x:Name="megfejtendopelda" IsReadOnly="True"></TextBox>
             <Label Content="Adjon meg egy betűt: " Foreground="White"></Label>
-            <TextBox x:Name="bemenet" MaxLength="1"></TextBox>
+            <TextBox PreviewTextInput="NumberValidationTextBox" x:Name="bemenet" MaxLength="1"></TextBox>
             <Button x:Name="tipButton" Height="20" Width="70" Click="TippClick"></Button>
             <Label Content="Adja meg a megfejtést: " Foreground="White"></Label>
             <TextBox></TextBox>
             <Grid>
-                <TextBox x:Name="esemenytabla" IsReadOnly="True" Height="125" Margin="0, 10, 0, 0" Width="200" HorizontalAlignment="Left"></TextBox>
-                <TextBox IsReadOnly="True" Height="125" Margin="0, 10, 0, 0" Width="200" HorizontalAlignment="Right"></TextBox>
+                <TextBox x:Name="esemenytabla" IsReadOnly="True" Height="125" Margin="0, 10, 0, 0" Width="250" HorizontalAlignment="Left"></TextBox>
+                <Rectangle Height="125" Margin="0, 10, 0, 0" Width="250" HorizontalAlignment="Right" Fill="White" OpacityMask="Black"></Rectangle>
+                <Image x:Name="gibbet" Height="125" Margin="0, 10, 75, 0" Width="200" HorizontalAlignment="Right" Source="/hangman_0.png" ></Image>
                 <!--ide rakd majd a kepet-->
             </Grid>
             <Button Click="eredmenyekClick" Content="Eredmények" Width="75" HorizontalAlignment="Right" Margin="0, 10, 0, 0" Background="#132226" Foreground="White"></Button>

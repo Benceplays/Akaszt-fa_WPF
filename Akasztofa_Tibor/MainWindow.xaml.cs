@@ -19,18 +19,16 @@ namespace Akasztofa_Tibor
     {
         public static int tipusSzam;
         public static string nev;
-        public static int maxszam;
         public MainWindow()
         {
             InitializeComponent();
         }
         public void GameClick(object sender, RoutedEventArgs e)
         {
-            maxszam = Convert.ToInt32(lehetosegszam.Text);
             nev = nevbemenet.Text;
-            if (Type0.IsChecked == true) tipusSzam = 0;
-            else if (Type1.IsChecked == true) tipusSzam = 1;
-            else if (Type2.IsChecked == true) tipusSzam = 2;
+            if (gym.IsChecked == true) tipusSzam = 0;
+            else if (porno.IsChecked == true) tipusSzam = 1;
+            else if (drug.IsChecked == true) tipusSzam = 2;
             MainFrame.Content = new Game();
         }
     }
