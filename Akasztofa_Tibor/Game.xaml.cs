@@ -21,8 +21,6 @@ namespace Akasztofa_Tibor
         private List<string> biologia = new List<string>();
         private List<string> matematika = new List<string>();
         private List<string> informatika = new List<string>();
-        private List<string> tippek = new List<string>();
-        private List<string> jotippek = new List<string>();
         private List<char> titkositottszo = new List<char>();
         private string randomszo;
         private int korszam = 1;
@@ -97,10 +95,8 @@ namespace Akasztofa_Tibor
             if (probalkozas <= maxszam)
             {
                 tipButton.Content = $"Tipp {probalkozas++}/{maxszam}";
-                tippek.Add(bemenet.Text);
                 if (randomszo.Contains(bemenet.Text))
                 { 
-                    jotippek.Add(bemenet.Text); 
                     Ellenorzo(Convert.ToChar(bemenet.Text));
                 }
                 esemenytabla.Text += $"{korszam}.kör. Tippelt betű: {bemenet.Text} Találat: {IgenNem(randomszo.Contains(bemenet.Text))} \n";
