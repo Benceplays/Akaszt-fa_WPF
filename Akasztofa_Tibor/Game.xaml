@@ -21,7 +21,11 @@
             <Button x:Name="tipButton" Height="20" Width="70" Click="TippClick"></Button>
             <Label Content="Adja meg a megfejtést: " Foreground="White"></Label>
             <TextBox></TextBox>
-            <TextBox x:Name="esemenytabla" IsReadOnly="True" Height="125" Margin="0, 10, 0, 0"></TextBox>
+            <Grid>
+                <TextBox x:Name="esemenytabla" IsReadOnly="True" Height="125" Margin="0, 10, 0, 0" Width="200" HorizontalAlignment="Left"></TextBox>
+                <TextBox IsReadOnly="True" Height="125" Margin="0, 10, 0, 0" Width="200" HorizontalAlignment="Right"></TextBox>
+                <!--ide rakd majd a kepet-->
+            </Grid>
             <Button Click="eredmenyekClick" Content="Eredmények" Width="75" HorizontalAlignment="Right" Margin="0, 10, 0, 0" Background="#132226" Foreground="White"></Button>
         </StackPanel>
         <Frame x:Name="MainFrame" Margin="-83,0,-83,0"/>
