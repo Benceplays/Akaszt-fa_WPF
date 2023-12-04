@@ -126,5 +126,6 @@ namespace Akasztofa_Tibor
             }
         }
         public void eredmenyekClick(object sender, RoutedEventArgs e) { MainFrame.Content = new Results(); }
+        public void megfejtesClick(object sender, RoutedEventArgs e) { megfejtesout.Text = randomszo.ToString(); }
     }
 }
