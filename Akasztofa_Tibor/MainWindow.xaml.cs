@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +24,22 @@ namespace Akasztofa_Tibor
         public MainWindow()
         {
             InitializeComponent();
+            foreach (string sor in File.ReadAllLines(@"jatekosok.txt"))
+            {
+                string[] s = sor.Split(';');
+                nevbemenet.Items.Add(s[0]);
+            }
+        }
+        private void ComboBoxName_TextChanged(object sender, EventArgs e)
+        {
+            if (nevbemenet.Text.Length > 0 && Regex.IsMatch(nevbemenet.Text, @"^[a-záéúőóüö A-ZZÁÉÚŐÓÜÖÍ]+$"))
+            {
+                GameButton.IsEnabled = true;
+            }
+            else
+            {
+                GameButton.IsEnabled = false;
+            }
         }
         public void GameClick(object sender, RoutedEventArgs e)
         {

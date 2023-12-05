@@ -10,14 +10,14 @@
         <Grid Width="375">
             <StackPanel>
                 <Label Foreground="White" FontSize="15" Content="Adja meg a teljes nevét: "></Label>
-                <ComboBox x:Name="nevbemenet" IsEditable="True" HorizontalAlignment="Stretch" Foreground="Black" FontWeight="Bold"/>
+                <ComboBox x:Name="nevbemenet" IsEditable="True" HorizontalAlignment="Stretch" Foreground="Black" FontWeight="Bold" TextBoxBase.TextChanged="ComboBoxName_TextChanged"/>
                 <Label Foreground="White" FontSize="15" Content="Adja meg a témakört: "></Label>
                 <Grid Background="#132226">
                     <RadioButton x:Name="gym" Foreground="White" Content="Edzőterem" Margin="10,5,0,0" IsChecked="True"/>
                     <RadioButton x:Name="porno" Foreground="White" Content="Pornógráfia" Margin="10,25,0,0"/>
                     <RadioButton x:Name="drug" Foreground="White" Content="Tudatmódosítószerek" Margin="10,45,0,5"/>
                 </Grid>
-                <Button Click="GameClick" Content="Játék indítása" Background="#132226" Foreground="White" Width="80" Margin="0, 25, 0, 10" HorizontalAlignment="Center"/>
+                <Button Click="GameClick" x:Name="GameButton" IsEnabled="False" Content="Játék indítása" Background="#132226" Foreground="White" Width="80" Margin="0, 25, 0, 10" HorizontalAlignment="Center"/>
             </StackPanel>
             <Frame x:Name="MainFrame" Margin="-83,0,-83,0"/>
         </Grid>
