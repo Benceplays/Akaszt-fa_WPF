@@ -47,9 +47,15 @@ namespace Akasztofa_Tibor
         {
             if (eltalaltbetuk!= "")
             {
-                Regex regex = new Regex($"[{eltalaltbetuk}]");
+                Regex regex = new Regex($"(?![{eltalaltbetuk}])[a-z]");
                 var futureText = $"{(sender as TextBox).Text}{e.Text}";
-                e.Handled = regex.IsMatch(futureText);
+                e.Handled = !regex.IsMatch(futureText);
+            }
+            else
+            {
+                Regex regex = new Regex("[a-z]");
+                var futureText = $"{(sender as TextBox).Text}{e.Text}";
+                e.Handled = !regex.IsMatch(futureText);
             }
 
         }
@@ -106,14 +112,13 @@ namespace Akasztofa_Tibor
         }
         public void TippClick(object sender, RoutedEventArgs e)
         {
-            if (probalkozas <= maxszam)
+            if (probalkozas <= maxszam && bemenet.Text != "")
             {
                 tipButton.Content = $"Tipp {probalkozas++}/{maxszam}";
                 if (randomszo.Contains(bemenet.Text))
                 { 
                     Ellenorzo(Convert.ToChar(bemenet.Text));
                     eltalaltbetuk+=(Convert.ToChar(bemenet.Text));
-                    bemenet.Text = "";
 
                 }
                 else
@@ -123,6 +128,7 @@ namespace Akasztofa_Tibor
                 }
                 esemenytabla.Text += $"{korszam}.kör. Tippelt betű: {bemenet.Text} Találat: {IgenNem(randomszo.Contains(bemenet.Text))} \n";
                 korszam++;
+                bemenet.Text = "";
             }
         }
         public void eredmenyekClick(object sender, RoutedEventArgs e) { MainFrame.Content = new Results(); }
