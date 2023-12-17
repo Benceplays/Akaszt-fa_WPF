@@ -35,12 +35,6 @@ namespace Akasztofa_Tibor
                     szo += $"Matematika témakörben nyert {s[3]}, vesztett {s[4]} játékot. \n";
                     szo += $"Informatika témakörben nyert {s[5]}, vesztett {s[6]} játékot.";
                 }
-                else
-                {
-                    szo += $"Biológia témakörben nyert 0, vesztett 0 játékot. \n";
-                    szo += $"Matematika témakörben nyert 0, vesztett 0 játékot. \n";
-                    szo += $"Informatika témakörben nyert 0, vesztett 0 játékot.";
-                }
                 eredmenyek.Text = szo;
             }
         }
