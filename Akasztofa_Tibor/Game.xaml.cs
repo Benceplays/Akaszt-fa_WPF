@@ -17,10 +17,31 @@ using System.Windows.Shapes;
 
 namespace Akasztofa_Tibor
 {
+    class Jatekosok
+    {
+        public string Nev { get; private set; }
+        public int Category1WonNumber { get; private set; }
+        public int Category1LostNumber { get; private set; }
+        public int Category2WonNumber { get; private set; }
+        public int Category2LostNumber { get; private set; }
+        public int Category3WonNumber { get; private set; }
+        public int Category3LostNumber { get; private set; }
+        public Jatekosok(string sor)
+        {
+            string[] s = sor.Split(';');
+            Nev = s[0];
+            Category1WonNumber = Convert.ToInt32(s[1]);
+            Category1LostNumber = Convert.ToInt32(s[2]);
+            Category2WonNumber = Convert.ToInt32(s[3]);
+            Category2LostNumber = Convert.ToInt32(s[4]);
+            Category3WonNumber = Convert.ToInt32(s[5]);
+            Category3LostNumber = Convert.ToInt32(s[6]);
+        }
+    }
     public partial class Game : Page
     {
         private List<string> gym = new List<string>();
-        private List<string> porno= new List<string>();
+        private List<string> porno = new List<string>();
         private List<string> drug = new List<string>();
         private string eltalaltbetuk = "";
         private List<char> titkositottszo = new List<char>();
@@ -45,7 +66,7 @@ namespace Akasztofa_Tibor
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            if (eltalaltbetuk!= "")
+            if (eltalaltbetuk != "")
             {
                 Regex regex = new Regex($"(?![{eltalaltbetuk}])[a-z]");
                 var futureText = $"{(sender as TextBox).Text}{e.Text}";
@@ -70,7 +91,7 @@ namespace Akasztofa_Tibor
                 string szo = "";
                 if (s[0] == MainWindow.nev)
                 {
-                    szo += $"Edzőterem témakörben nyert {s[1]}, vesztett {s[2]} játékot. \n" ;
+                    szo += $"Edzőterem témakörben nyert {s[1]}, vesztett {s[2]} játékot. \n";
                     szo += $"Pornógráfia témakörben nyert {s[3]}, vesztett {s[4]} játékot. \n";
                     szo += $"Tudatmodósítószerek témakörben nyert {s[5]}, vesztett {s[6]} játékot.";
                 }
@@ -89,7 +110,8 @@ namespace Akasztofa_Tibor
                 if (s[1] == "m") porno.Add(s[0]);
                 if (s[1] == "i") drug.Add(s[0]);
             }
-            switch (MainWindow.tipusSzam) {
+            switch (MainWindow.tipusSzam)
+            {
                 case 0:
                     temakor.Text = "Edzőterem";
                     randomszo = gym[random.Next(gym.Count)];
@@ -116,15 +138,15 @@ namespace Akasztofa_Tibor
             {
                 tipButton.Content = $"Tipp {probalkozas++}/{maxszam}";
                 if (randomszo.Contains(bemenet.Text))
-                { 
+                {
                     Ellenorzo(Convert.ToChar(bemenet.Text));
-                    eltalaltbetuk+=(Convert.ToChar(bemenet.Text));
+                    eltalaltbetuk += (Convert.ToChar(bemenet.Text));
 
                 }
                 else
                 {
                     hiba++;
-                    gibbet.Source = new BitmapImage(new Uri($"hangman_{hiba}.png",UriKind.RelativeOrAbsolute));
+                    gibbet.Source = new BitmapImage(new Uri($"hangman_{hiba}.png", UriKind.RelativeOrAbsolute));
                 }
                 esemenytabla.Text += $"{korszam}.kör. Tippelt betű: {bemenet.Text} Találat: {IgenNem(randomszo.Contains(bemenet.Text))} \n";
                 korszam++;
@@ -132,6 +154,55 @@ namespace Akasztofa_Tibor
             }
         }
         public void eredmenyekClick(object sender, RoutedEventArgs e) { MainFrame.Content = new Results(); }
-        public void megfejtesClick(object sender, RoutedEventArgs e) { megfejtesout.Text = randomszo.ToString(); }
+        public void megfejtesClick(object sender, RoutedEventArgs e)
+        {
+            megfejtesout.Text = randomszo.ToString();
+            LooseWriteToFile();
+        }
+        public void LooseWriteToFile()
+        {
+            List<Jatekosok> jatekosoklist = new List<Jatekosok>();
+            string fullPath = $"jatekosok.txt";
+            foreach (string sor in File.ReadAllLines(@"jatekosok.txt"))
+            {
+                jatekosoklist.Add(new Jatekosok(sor));
+            }
+            if (Convert.ToInt32(jatekosoklist.Where(j => j.Nev == MainWindow.nev).Count()) >= 1)
+            {
+                List<string> sorok = new List<string>();
+                jatekosoklist.Where(j => j.Nev != MainWindow.nev).ToList().ForEach(j => { sorok.Add($"{j.Nev};{j.Category1WonNumber};{j.Category1LostNumber};{j.Category2WonNumber};{j.Category2LostNumber};{j.Category3WonNumber};{j.Category3LostNumber}"); });
+                switch (MainWindow.tipusSzam)
+                {
+                    case 0:
+                        sorok.Add($"{MainWindow.nev};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category1WonNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category1LostNumber).SingleOrDefault() + 1};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category2WonNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category2LostNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category3WonNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category3LostNumber).SingleOrDefault()}");
+                        break;
+                    case 1:
+                        sorok.Add($"{MainWindow.nev};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category1WonNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category1LostNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category2WonNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category2LostNumber).SingleOrDefault() + 1};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category3WonNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category3LostNumber).SingleOrDefault()}");
+                        break;
+                    case 2:
+                        sorok.Add($"{MainWindow.nev};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category1WonNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category1LostNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category2WonNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category2LostNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category3WonNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category3LostNumber).SingleOrDefault() + 1}");
+                        break;
+                }
+                File.WriteAllLines(fullPath, sorok);
+            }
+            else
+            {
+                List<string> sorok = new List<string>();
+                jatekosoklist.Where(j => j.Nev != MainWindow.nev).ToList().ForEach(j => { sorok.Add($"{j.Nev};{j.Category1WonNumber};{j.Category1LostNumber};{j.Category2WonNumber};{j.Category2LostNumber};{j.Category3WonNumber};{j.Category3LostNumber}"); });
+                switch (MainWindow.tipusSzam)
+                {
+                    case 0:
+                        sorok.Add($"{MainWindow.nev};{0};{1};{0};{0};{0};{0}");
+                        break;
+                    case 1:
+                        sorok.Add($"{MainWindow.nev};{0};{0};{0};{1};{0};{0}");
+                        break;
+                    case 2:
+                        sorok.Add($"{MainWindow.nev};{0};{0};{0};{0};{0};{1}");
+                        break;
+                }
+                File.WriteAllLines(fullPath, sorok);
+            }
+        }
     }
 }
