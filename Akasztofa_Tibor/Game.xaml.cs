@@ -144,13 +144,13 @@ namespace Akasztofa_Tibor
             { 
                 iswin = 1;
                 iswinlabel.Content = "Siker tesomsz.";
-                
+                WinWriteToFile();
             }
             else 
             { 
                 iswin = 0;
                 iswinlabel.Content = "Not siker tesomsz.";
-                LooseWriteToFile();
+                LoseWriteToFile();
             }
         }
         public void TippClick(object sender, RoutedEventArgs e)
@@ -177,13 +177,13 @@ namespace Akasztofa_Tibor
         public void eredmenyekClick(object sender, RoutedEventArgs e) { MainFrame.Content = new Results(); }
         public void megfejtesClick(object sender, RoutedEventArgs e)
         {
-            LooseWriteToFile();
+            LoseWriteToFile();
             megfejtesout.Text = randomszo.ToString();
             tipButton.IsEnabled = false;
             okButton.IsEnabled = false;
             megfejtesButton.IsEnabled = false;
         }
-        public void LooseWriteToFile()
+        public void LoseWriteToFile()
         {
             List<Jatekosok> jatekosoklist = new List<Jatekosok>();
             string fullPath = $"jatekosok.txt";
