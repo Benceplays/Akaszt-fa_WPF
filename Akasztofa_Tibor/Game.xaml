@@ -33,12 +33,21 @@
                     <ColumnDefinition Width="200*" />
                     <ColumnDefinition Width="400*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Adja meg a megfejtést: " Foreground="White"></Label>
-                <TextBox x:Name="megfejtesout" Height="20" Grid.Column="0" VerticalAlignment="Bottom" Width="200"></TextBox>
-                <Button Click="megfejtesClick" Content="Megfejtés" Height="20" Width="70" Grid.Column="2"></Button>
+                <Label Content="Itt láthatja a megfejtést: " Foreground="White"></Label>
+                <TextBox x:Name="megfejtesout" Height="20" Grid.Column="0" VerticalAlignment="Bottom" Width="200" IsReadOnly="True"></TextBox>
+                <Button Click="megfejtesClick" x:Name="megfejtesButton" Content="Megfejtés" Height="20" Width="70" Grid.Column="2"></Button>
             </Grid>
-            <Label Content="Adja meg a megfejtést: " Foreground="White"></Label>
-            <TextBox></TextBox>
+            <Grid Height="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200*" />
+                    <ColumnDefinition Width="200*" />
+                    <ColumnDefinition Width="400*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Adja meg a megfejtést: " Foreground="White"></Label>
+                <TextBox x:Name="megfejtes" Height="20" Grid.Column="0" VerticalAlignment="Bottom" Width="200"></TextBox>
+                <Button x:Name="okButton" Height="20" Width="70" Click="CheckClick" Grid.Column="2" Content="Tippelek"></Button>
+            </Grid>
+            <Label HorizontalAlignment="Center" x:Name="iswinlabel" Foreground="#fff"></Label>
             <Grid>
                 <TextBox x:Name="esemenytabla" IsReadOnly="True" Height="125" Margin="0, 10, 0, 0" Width="250" HorizontalAlignment="Left"></TextBox>
                 <Rectangle Height="125" Margin="0, 10, 0, 0" Width="250" HorizontalAlignment="Right" Fill="White" OpacityMask="Black"></Rectangle>

@@ -48,8 +48,8 @@ namespace Akasztofa_Tibor
         private string randomszo;
         private int korszam = 1;
         private int maxszam = 6;
-        private int probalkozas = 1;
         private int hiba = 0;
+        private int iswin;
         static string IgenNem(bool val) { return val ? "igen" : "nem"; }
         public void Ellenorzo(char betu)
         {
@@ -130,23 +130,44 @@ namespace Akasztofa_Tibor
                 titkositottszo.Add('*');
             }
             titkositottszo.ForEach(n => megfejtendopelda.Text += n);
-            tipButton.Content = $"{probalkozas}/{maxszam}";
+            tipButton.Content = $"{hiba}/{maxszam}";
+        }
+        public void CheckClick(object sender, RoutedEventArgs e)
+        {
+            tipButton.IsEnabled = false;
+            megfejtesButton.IsEnabled = false;
+            okButton.IsEnabled = false;
+            megfejtes.IsReadOnly = true;
+            bemenet.IsReadOnly = true;
+            megfejtendopelda.Text = randomszo;
+            if (megfejtes.Text == randomszo) 
+            { 
+                iswin = 1;
+                iswinlabel.Content = "Siker tesomsz.";
+                
+            }
+            else 
+            { 
+                iswin = 0;
+                iswinlabel.Content = "Not siker tesomsz.";
+                LooseWriteToFile();
+            }
         }
         public void TippClick(object sender, RoutedEventArgs e)
         {
-            if (probalkozas <= maxszam && bemenet.Text != "")
+            if (hiba < maxszam && bemenet.Text != "")
             {
-                tipButton.Content = $"Tipp {probalkozas++}/{maxszam}";
                 if (randomszo.Contains(bemenet.Text))
                 {
                     Ellenorzo(Convert.ToChar(bemenet.Text));
                     eltalaltbetuk += (Convert.ToChar(bemenet.Text));
-
+                    tipButton.Content = $"Hiba {hiba}/{maxszam}";
                 }
                 else
                 {
                     hiba++;
                     gibbet.Source = new BitmapImage(new Uri($"hangman_{hiba}.png", UriKind.RelativeOrAbsolute));
+                    tipButton.Content = $"Hiba {hiba}/{maxszam}";
                 }
                 esemenytabla.Text += $"{korszam}.kör. Tippelt betű: {bemenet.Text} Találat: {IgenNem(randomszo.Contains(bemenet.Text))} \n";
                 korszam++;
@@ -156,8 +177,11 @@ namespace Akasztofa_Tibor
         public void eredmenyekClick(object sender, RoutedEventArgs e) { MainFrame.Content = new Results(); }
         public void megfejtesClick(object sender, RoutedEventArgs e)
         {
-            megfejtesout.Text = randomszo.ToString();
             LooseWriteToFile();
+            megfejtesout.Text = randomszo.ToString();
+            tipButton.IsEnabled = false;
+            okButton.IsEnabled = false;
+            megfejtesButton.IsEnabled = false;
         }
         public void LooseWriteToFile()
         {
