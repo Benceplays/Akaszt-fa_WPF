@@ -204,5 +204,50 @@ namespace Akasztofa_Tibor
                 File.WriteAllLines(fullPath, sorok);
             }
         }
+        public void WinWriteToFile()
+        {
+            List<Jatekosok> jatekosoklist = new List<Jatekosok>();
+            string fullPath = $"jatekosok.txt";
+            foreach (string sor in File.ReadAllLines(@"jatekosok.txt"))
+            {
+                jatekosoklist.Add(new Jatekosok(sor));
+            }
+            if (Convert.ToInt32(jatekosoklist.Where(j => j.Nev == MainWindow.nev).Count()) >= 1)
+            {
+                List<string> sorok = new List<string>();
+                jatekosoklist.Where(j => j.Nev != MainWindow.nev).ToList().ForEach(j => { sorok.Add($"{j.Nev};{j.Category1WonNumber};{j.Category1LostNumber};{j.Category2WonNumber};{j.Category2LostNumber};{j.Category3WonNumber};{j.Category3LostNumber}"); });
+                switch (MainWindow.tipusSzam)
+                {
+                    case 0:
+                        sorok.Add($"{MainWindow.nev};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category1WonNumber).SingleOrDefault() + 1};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category1LostNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category2WonNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category2LostNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category3WonNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category3LostNumber).SingleOrDefault()}");
+                        break;
+                    case 1:
+                        sorok.Add($"{MainWindow.nev};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category1WonNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category1LostNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category2WonNumber).SingleOrDefault() + 1};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category2LostNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category3WonNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category3LostNumber).SingleOrDefault()}");
+                        break;
+                    case 2:
+                        sorok.Add($"{MainWindow.nev};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category1WonNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category1LostNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category2WonNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category2LostNumber).SingleOrDefault()};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category3WonNumber).SingleOrDefault() + 1};{jatekosoklist.Where(j => j.Nev == MainWindow.nev).Select(j => j.Category3LostNumber).SingleOrDefault()}");
+                        break;
+                }
+                File.WriteAllLines(fullPath, sorok);
+            }
+            else
+            {
+                List<string> sorok = new List<string>();
+                jatekosoklist.Where(j => j.Nev != MainWindow.nev).ToList().ForEach(j => { sorok.Add($"{j.Nev};{j.Category1WonNumber};{j.Category1LostNumber};{j.Category2WonNumber};{j.Category2LostNumber};{j.Category3WonNumber};{j.Category3LostNumber}"); });
+                switch (MainWindow.tipusSzam)
+                {
+                    case 0:
+                        sorok.Add($"{MainWindow.nev};{1};{0};{0};{0};{0};{0}");
+                        break;
+                    case 1:
+                        sorok.Add($"{MainWindow.nev};{0};{0};{1};{0};{0};{0}");
+                        break;
+                    case 2:
+                        sorok.Add($"{MainWindow.nev};{0};{0};{0};{0};{1};{0}");
+                        break;
+                }
+                File.WriteAllLines(fullPath, sorok);
+            }
+        }
     }
 }
