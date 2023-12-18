@@ -31,9 +31,9 @@ namespace Akasztofa_Tibor
                 string szo = "";
                 if (s[0] == MainWindow.nev)
                 {
-                    szo += $"Biológia témakörben nyert {s[1]}, vesztett {s[2]} játékot. \n";
-                    szo += $"Matematika témakörben nyert {s[3]}, vesztett {s[4]} játékot. \n";
-                    szo += $"Informatika témakörben nyert {s[5]}, vesztett {s[6]} játékot.";
+                    szo += $"Edzőterem témakörben nyert {s[1]}, vesztett {s[2]} játékot. \n";
+                    szo += $"Vadászat témakörben nyert {s[3]}, vesztett {s[4]} játékot. \n";
+                    szo += $"Tudatmodósítószerek témakörben nyert {s[5]}, vesztett {s[6]} játékot.";
                 }
                 eredmenyek.Text = szo;
             }

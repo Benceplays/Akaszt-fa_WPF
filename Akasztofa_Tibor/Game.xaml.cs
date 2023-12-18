@@ -41,7 +41,7 @@ namespace Akasztofa_Tibor
     public partial class Game : Page
     {
         private List<string> gym = new List<string>();
-        private List<string> porno = new List<string>();
+        private List<string> hunting = new List<string>();
         private List<string> drug = new List<string>();
         private string beirtbetuk = "";
         private List<char> titkositottszo = new List<char>();
@@ -92,22 +92,22 @@ namespace Akasztofa_Tibor
                 if (s[0] == MainWindow.nev)
                 {
                     szo += $"Edzőterem témakörben nyert {s[1]}, vesztett {s[2]} játékot. \n";
-                    szo += $"Pornógráfia témakörben nyert {s[3]}, vesztett {s[4]} játékot. \n";
+                    szo += $"Vadászat témakörben nyert {s[3]}, vesztett {s[4]} játékot. \n";
                     szo += $"Tudatmodósítószerek témakörben nyert {s[5]}, vesztett {s[6]} játékot.";
                 }
                 else
                 {
                     szo += $"Edzőterem témakörben nyert 0, vesztett 0 játékot. \n";
-                    szo += $"Pornógráfia témakörben nyert 0, vesztett 0 játékot. \n";
+                    szo += $"Vadászat témakörben nyert 0, vesztett 0 játékot. \n";
                     szo += $"Tudatmodósítószerek témakörben nyert 0, vesztett 0 játékot.";
                 }
                 eredmenyek.Text = szo;
             }
-            foreach (string sor in File.ReadAllLines(@"szavak2.txt"))
+            foreach (string sor in File.ReadAllLines(@"szavak.txt"))
             {
                 string[] s = sor.Split(';');
                 if (s[1] == "e") gym.Add(s[0]);
-                if (s[1] == "m") porno.Add(s[0]);
+                if (s[1] == "h") hunting.Add(s[0]);
                 if (s[1] == "d") drug.Add(s[0]);
             }
             switch (MainWindow.tipusSzam)
@@ -117,8 +117,8 @@ namespace Akasztofa_Tibor
                     randomszo = gym[random.Next(gym.Count)].ToLower();
                     break;
                 case 1:
-                    temakor.Text = "Pornógráfia";
-                    randomszo = porno[random.Next(porno.Count)].ToLower();
+                    temakor.Text = "Vadászat";
+                    randomszo = hunting[random.Next(hunting.Count)].ToLower();
                     break;
                 case 2:
                     temakor.Text = "Tudatmodósítószerek";

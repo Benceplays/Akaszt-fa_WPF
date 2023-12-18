@@ -45,7 +45,7 @@ namespace Akasztofa_Tibor
         {
             nev = nevbemenet.Text;
             if (gym.IsChecked == true) tipusSzam = 0;
-            else if (porno.IsChecked == true) tipusSzam = 1;
+            else if (hunting.IsChecked == true) tipusSzam = 1;
             else if (drug.IsChecked == true) tipusSzam = 2;
             MainFrame.Content = new Game();
         }
