@@ -43,7 +43,7 @@ namespace Akasztofa_Tibor
         private List<string> gym = new List<string>();
         private List<string> porno = new List<string>();
         private List<string> drug = new List<string>();
-        private string eltalaltbetuk = "";
+        private string beirtbetuk = "";
         private List<char> titkositottszo = new List<char>();
         private string randomszo;
         private int korszam = 1;
@@ -66,15 +66,15 @@ namespace Akasztofa_Tibor
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            if (eltalaltbetuk != "")
+            if (beirtbetuk != "")
             {
-                Regex regex = new Regex($"(?![{eltalaltbetuk}])[a-z]");
+                Regex regex = new Regex($"(?![{beirtbetuk}])[a-záéőöüűíóú]");
                 var futureText = $"{(sender as TextBox).Text}{e.Text}";
                 e.Handled = !regex.IsMatch(futureText);
             }
             else
             {
-                Regex regex = new Regex("[a-z]");
+                Regex regex = new Regex("[a-záéőöüűíóú]");
                 var futureText = $"{(sender as TextBox).Text}{e.Text}";
                 e.Handled = !regex.IsMatch(futureText);
             }
@@ -114,15 +114,15 @@ namespace Akasztofa_Tibor
             {
                 case 0:
                     temakor.Text = "Edzőterem";
-                    randomszo = gym[random.Next(gym.Count)];
+                    randomszo = gym[random.Next(gym.Count)].ToLower();
                     break;
                 case 1:
                     temakor.Text = "Pornógráfia";
-                    randomszo = porno[random.Next(porno.Count)];
+                    randomszo = porno[random.Next(porno.Count)].ToLower();
                     break;
                 case 2:
                     temakor.Text = "Tudatmodósítószerek";
-                    randomszo = drug[random.Next(drug.Count)];
+                    randomszo = drug[random.Next(drug.Count)].ToLower();
                     break;
             }
             for (int i = 0; i < randomszo.Length; i++)
@@ -157,15 +157,16 @@ namespace Akasztofa_Tibor
         {
             if (hiba < maxszam && bemenet.Text != "")
             {
-                if (randomszo.Contains(bemenet.Text))
+                if (randomszo.Contains(bemenet.Text.ToLower()))
                 {
                     Ellenorzo(Convert.ToChar(bemenet.Text));
-                    eltalaltbetuk += (Convert.ToChar(bemenet.Text));
+                    beirtbetuk += (Convert.ToChar(bemenet.Text));
                     tipButton.Content = $"Hiba {hiba}/{maxszam}";
                 }
                 else
                 {
                     hiba++;
+                    beirtbetuk += (Convert.ToChar(bemenet.Text));
                     gibbet.Source = new BitmapImage(new Uri($"hangman_{hiba}.png", UriKind.RelativeOrAbsolute));
                     tipButton.Content = $"Hiba {hiba}/{maxszam}";
                 }
