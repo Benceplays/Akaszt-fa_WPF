@@ -103,12 +103,12 @@ namespace Akasztofa_Tibor
                 }
                 eredmenyek.Text = szo;
             }
-            foreach (string sor in File.ReadAllLines(@"szavak.txt"))
+            foreach (string sor in File.ReadAllLines(@"szavak2.txt"))
             {
                 string[] s = sor.Split(';');
-                if (s[1] == "b") gym.Add(s[0]);
+                if (s[1] == "e") gym.Add(s[0]);
                 if (s[1] == "m") porno.Add(s[0]);
-                if (s[1] == "i") drug.Add(s[0]);
+                if (s[1] == "d") drug.Add(s[0]);
             }
             switch (MainWindow.tipusSzam)
             {
@@ -127,7 +127,14 @@ namespace Akasztofa_Tibor
             }
             for (int i = 0; i < randomszo.Length; i++)
             {
-                titkositottszo.Add('*');
+                if (randomszo[i] != '-')
+                {
+                    titkositottszo.Add('*');
+                }
+                else
+                {
+                    titkositottszo.Add('-');
+                }
             }
             titkositottszo.ForEach(n => megfejtendopelda.Text += n);
             tipButton.Content = $"{hiba}/{maxszam}";

@@ -16,7 +16,7 @@
             <TextBox x:Name="temakor" IsReadOnly="True"></TextBox>
             <Label Content="A megfejtendő szó mintája: " Foreground="White"></Label>
             <TextBox x:Name="megfejtendopelda" IsReadOnly="True"></TextBox>
-            
+
             <Grid Height="50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200*" />
@@ -24,8 +24,8 @@
                     <ColumnDefinition Width="400*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Adjon meg egy betűt: " Foreground="White"></Label>
-            <TextBox PreviewTextInput="NumberValidationTextBox" x:Name="bemenet" MaxLength="1" Height="20" VerticalAlignment="Bottom"></TextBox>
-            <Button x:Name="tipButton" Height="20" Width="70" Click="TippClick" Grid.Column="2"></Button>
+                <TextBox PreviewTextInput="NumberValidationTextBox" x:Name="bemenet" MaxLength="1" Height="20" VerticalAlignment="Bottom"></TextBox>
+                <Button x:Name="tipButton" Height="20" Width="70" Click="TippClick" Grid.Column="2"></Button>
             </Grid>
             <Grid Height="50">
                 <Grid.ColumnDefinitions>
@@ -34,7 +34,7 @@
                     <ColumnDefinition Width="400*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Itt láthatja a megfejtést: " Foreground="White"></Label>
-                <TextBox x:Name="megfejtesout" Height="20" Grid.Column="0" VerticalAlignment="Bottom" Width="200" IsReadOnly="True"></TextBox>
+                <TextBox x:Name="megfejtesout" Height="20" Grid.Column="0" VerticalAlignment="Bottom" Width="300" IsReadOnly="True" Grid.ColumnSpan="2" Margin="0,0,100,0"></TextBox>
                 <Button Click="megfejtesClick" x:Name="megfejtesButton" Content="Megfejtés" Height="20" Width="70" Grid.Column="2"></Button>
             </Grid>
             <Grid Height="50">

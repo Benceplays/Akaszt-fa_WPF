@@ -3,101 +3,101 @@ Futópad;e
 TRX;e
 Kettlebell;e
 Lépcsőfutás;e
-Bosu labda;e
+Bosu-labda;e
 Szobakerékpár;e
 Nyújtás;e
 Felhúzás;e
-Kenguru ugrás;e
+Kenguru-ugrás;e
 Boxzsák;e
 Plank;e
 Bicepsz;e
-Csigás gép;e
+Csigás-gép;e
 Fekvőtámasz;e
-Ellipszis tréner;e
+Ellipszis-tréner;e
 Squash;e
 Váltópad;e
 Guggolás;e
-Stabilitás labda;e
+Stabilitás-labda;e
 Húzódzkodás;e
 Cardio;e
-Kettlebell swing;e
+Kettlebell-swing;e
 Gyúró;e
 Szörfdeszka;e
 Hasprés;e
-Inverziós asztal;e
-Kardió gép;e
+Inverziós-asztal;e
+Kardió-gép;e
 Tricepsz;e
 Lépések;e
-Nyakizom erősítés;e
+Nyakizom-erősítés;e
 Taposópad;e
 Pilates;e
-Rugalmas szalag;e
+Rugalmas-szalag;e
 Medenceúszás;e
-Húzódzkodó rúd;e
+Húzódzkodó-rúd;e
 Spinning;e
-Hátizom erősítés;e
+Hátizom-erősítés;e
 Stepper;e
-Pilates labda;e
-Kettlebell tolás;e
+Pilates-labda;e
+Kettlebell-tolás;e
 Tárogatás;e
-Stabilitás pad;e
+Stabilitás-pad;e
 Medencehúzás;e
 Ülőtámasz;e
 Kifeszítés;e
 Kézisúlyzók;e
 Lábtolás;e
-TRX felhúzás;e
+TRX-felhúzás;e
 Kötélugrás;e
 Keresztlépés;e
 Függeszkedés;e
 Súlyemelés;e
-Súlyzó csavarás;e
+Súlyzó-csavarás;e
 Tárcsázás;e
-Kettlebell guggolás;e
+Kettlebell-guggolás;e
 Nyújtópad;e
 Hordógép;e
-Stabilitás labda gurítás;e
-Kétkezes súlyzó;e
+Stabilitás-labda-gurítás;e
+Kétkezes-súlyzó;e
 Lendület;e
-Hasprés gép;e
-Guggolás rúddal;e
-Lépcsőfutó gép;e
+Hasprés-gép;e
+Guggolás-rúddal;e
+Lépcsőfutó-gép;e
 Csípőemelés;e
-Ellipszis tréner;e
-Függeszkedő csípőemelés;e
-Kettlebell függesztés;e
+Ellipszis-tréner;e
+Függeszkedő-csípőemelés;e
+Kettlebell-függesztés;e
 Lépőláda;e
-Széles fogású húzódzkodás;e
-Hátprés gép;e
-Súlyzó cipelés;e
+Széles-fogású-húzódzkodás;e
+Hátprés-gép;e
+Súlyzó-cipelés;e
 Zumba;e
-Hasizom erősítés;e
-Tárogató kötél;e
+Hasizom-erősítés;e
+Tárogató-kötél;e
 Tömegnövelés;e
-Intervallum edzés;e
-TRX hátrahúzás;e
-Kettlebell emelés;e
-Tárogató húzás;e
+Intervallum-edzés;e
+TRX-hátrahúzás;e
+Kettlebell-emelés;e
+Tárogató-húzás;e
 Lábprés;e
 Kötélkúszás;e
 Kereszthúzás;e
-Súlyzó lenyomás;e
-Kettlebell feszítés;e
+Súlyzó-lenyomás;e
+Kettlebell-feszítés;e
 Sétálópad;e
 Lépegetés;e
-Gépi súlyemelés;e
-Hasizom gyakorlatok;e
-Húzódzkodás kötéllel;e
-Kettlebell rúgás;e
-Kardió edzés;e
+Gépi-súlyemelés;e
+Hasizom-gyakorlatok;e
+Húzódzkodás-kötéllel;e
+Kettlebell-rúgás;e
+Kardió-edzés;e
 Lábbicikli;e
-Súlyzó húzás;e
-TRX felülés;e
+Súlyzó-húzás;e
+TRX-felülés;e
 Ugrókötél;e
-Tárogatás kötéllel;e
-Súlyzó emelés;e
-Kettlebell emelkedés;e
-Gépi nyomás;e
+Tárogatás-kötéllel;e
+Súlyzó-emelés;e
+Kettlebell-emelkedés;e
+Gépi-nyomás;e
 cucc;d
 energia;d
 kábszer;d
@@ -125,13 +125,13 @@ eszid;d
 lecsó;d
 tripp;d
 cukor;d
-fehér cukor;d
+fehér-cukor;d
 hercsi;d
 hernyó;d
 háeren;d
 nyalóka;d
 hó;d
-fehér hó;d
+fehér-hó;d
 kokó;d
 koksz;d
 por;d
